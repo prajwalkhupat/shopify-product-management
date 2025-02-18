@@ -22,5 +22,3 @@ export const deleteProduct = async (id) => {
   await axios.delete(`${API_URL}/${id}`);
 };
 
-
-

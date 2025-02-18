@@ -29,3 +29,6 @@ const ProductTable = ({ products = [], onEdit, onDelete }) => {
 };
 
 export default ProductTable;
+
+
+

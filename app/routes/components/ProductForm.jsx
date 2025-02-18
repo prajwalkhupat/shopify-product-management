@@ -1,7 +1,4 @@
 
-
-
-
 import React, { useState, useEffect } from "react";
 import { Form, FormLayout, TextField, Button, Card, Page } from "@shopify/polaris";
 
@@ -15,7 +12,6 @@ const ProductForm = ({ onSubmit, initialData, onCancel }) => {
   });
 
   useEffect(() => {
-    // Only set product if initialData is different from the current product
     if (initialData && initialData.id !== product.id) {
       setProduct(initialData || {
         title: "",
@@ -25,7 +21,7 @@ const ProductForm = ({ onSubmit, initialData, onCancel }) => {
         images: [{ src: "" }],
       });
     }
-  }, [initialData, product.id]);
+  }, [initialData, product.id]); 
 
   const handleChange = (field) => (value) => {
     setProduct((prev) => ({ ...prev, [field]: value }));
@@ -42,22 +38,34 @@ const ProductForm = ({ onSubmit, initialData, onCancel }) => {
     }));
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (!product.title || !product.body_html || !product.vendor || !product.variants[0].price || !product.images[0].src) {
       alert("Please fill in all fields before submitting!");
       return;
     }
-    onSubmit(product);
-    setProduct({ title: "", body_html: "", vendor: "", variants: [{ price: "" }], images: [{ src: "" }] });
+    await onSubmit(product);
+    setProduct({
+      title: "",
+      body_html: "",
+      vendor: "",
+      variants: [{ price: "" }],
+      images: [{ src: "" }],
+    }); 
   };
 
   const handleCancel = () => {
-    setProduct({ title: "", body_html: "", vendor: "", variants: [{ price: "" }], images: [{ src: "" }] });
+    setProduct({
+      title: "",
+      body_html: "",
+      vendor: "",
+      variants: [{ price: "" }],
+      images: [{ src: "" }],
+    });
     onCancel();
   };
 
   return (
-    <Page title="Add Product">
+    <Page title={initialData ? "Edit Product" : "Add Product"}>
       <Card sectioned>
         <Form onSubmit={handleSubmit}>
           <FormLayout>
@@ -79,3 +87,6 @@ const ProductForm = ({ onSubmit, initialData, onCancel }) => {
 };
 
 export default ProductForm;
+
+
+

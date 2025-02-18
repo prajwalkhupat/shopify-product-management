@@ -1,5 +1,4 @@
 
-
 import React, { useState, useEffect } from "react";
 import { AppProvider, Page, Layout, Card, Toast, Frame } from "@shopify/polaris";
 import enTranslations from "@shopify/polaris/locales/en.json";
@@ -14,7 +13,7 @@ const App = () => {
   const [editingProduct, setEditingProduct] = useState(null);
   const [toast, setToast] = useState({ active: false, message: "" });
 
-  // Fetch products and sort them (newest first)
+  
   const fetchProducts = async () => {
     try {
       const data = await getAllProducts();
@@ -38,7 +37,7 @@ const App = () => {
         setToast({ active: true, message: "Product added successfully!" });
       }
       setEditingProduct(null);
-      fetchProducts(); // Refresh product list
+      fetchProducts(); 
     } catch (error) {
       console.error("Error saving product:", error);
       setToast({ active: true, message: "Failed to save product" });
@@ -49,7 +48,7 @@ const App = () => {
     try {
       await deleteProduct(id);
       setToast({ active: true, message: "Product deleted successfully!" });
-      fetchProducts(); // Refresh product list
+      fetchProducts(); 
     } catch (error) {
       console.error("Error deleting product:", error);
       setToast({ active: true, message: "Failed to delete product" });
@@ -88,3 +87,4 @@ const App = () => {
 };
 
 export default App;
+
