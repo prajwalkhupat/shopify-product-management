@@ -1,3 +1,4 @@
+
 import axios from "axios";
 
 const API_URL = "http://localhost:3000/api/products";
@@ -20,5 +21,6 @@ export const updateProduct = async (id, product) => {
 export const deleteProduct = async (id) => {
   await axios.delete(`${API_URL}/${id}`);
 };
+
 
 
